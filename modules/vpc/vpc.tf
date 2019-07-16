@@ -84,7 +84,7 @@ resource "aws_nat_gateway" "ngw" {
   count = "${var.total-nat-gateway-required}"
   allocation_id = "${element(aws_eip.eip-ngw.*.id,count.index)}"
   subnet_id = "${element(aws_subnet.public-subnets.*.id, count.index)}"
-  tags {
+  tags = {
     Name = "${var.nat-gateway-name}-${count.index+1}"
   }
 }
